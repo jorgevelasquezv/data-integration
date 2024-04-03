@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
-import { ProductsService } from '../products/products.service';
 import { initialData } from './data/seed-data';
+import { LegacySystemService } from 'src/legacy-system/legacy-system.service';
 
 @Injectable()
 export class SeedService {
-  constructor(private readonly productService: ProductsService) {}
+  constructor(private readonly legacySystemService: LegacySystemService) {}
 
   async runSeed() {
     await this.deleteTables();
@@ -15,7 +15,7 @@ export class SeedService {
     const insertPromises = [];
 
     products.forEach((product) => {
-      insertPromises.push(this.productService.create(product));
+      insertPromises.push(this.legacySystemService.create(product));
     });
 
     Promise.all(insertPromises);
@@ -24,6 +24,6 @@ export class SeedService {
   }
 
   private async deleteTables() {
-    await this.productService.deletedAllProducts();
+    await this.legacySystemService.deletedAllProducts();
   }
 }

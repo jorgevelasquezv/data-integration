@@ -4,9 +4,12 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
-import { ProductsModule } from './products/products.module';
+import { ECommerceSystemModule } from './ecommerce-system/ecommerce-system.module';
 import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
+import { LegacySystemModule } from './legacy-system/legacy-system.module';
+import { DataIntegrationModule } from './data-integration/data-integration.module';
+import { FiltersModule } from './filters/filters.module';
 
 @Module({
   imports: [
@@ -22,11 +25,15 @@ import { SeedModule } from './seed/seed.module';
       synchronize: process.env.DB_SYNCHRONIZE === 'true',
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'static/products'),
+      rootPath: join(__dirname, '..', 'public'),
+      serveRoot: 'static/products',
     }),
-    ProductsModule,
+    ECommerceSystemModule,
     CommonModule,
     SeedModule,
+    LegacySystemModule,
+    DataIntegrationModule,
+    FiltersModule,
   ],
 })
 export class AppModule {}

@@ -8,15 +8,15 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 
-import { CreateProductDto, UpdateProductDto } from './dto';
+import { CreateProductDto, UpdateProductDto } from '../data-integration/dto';
 import { PaginationDto } from '../common/dto/pagination.dto';
 
-import { ProductImage, Product } from './entities';
+import { ProductImage, Product } from '../legacy-system/entities';
 import { isUUID } from 'class-validator';
 
 @Injectable()
-export class ProductsService {
-  private readonly logger = new Logger(ProductsService.name);
+export class LegacySystemService {
+  private readonly logger = new Logger(LegacySystemService.name);
 
   constructor(
     @InjectRepository(Product)
