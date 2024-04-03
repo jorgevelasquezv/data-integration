@@ -18,7 +18,7 @@ export class PaginationDto {
     format: 'integer',
     default: 0,
     description: ' How many rows do you want to skip',
-    minimum: 1,
+    minimum: 0,
     required: false,
   })
   @IsOptional()
