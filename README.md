@@ -11,9 +11,9 @@
    ```
 3. Clonar archivo **.env.template** en un archivo **.env** 
 4. Cambiar las variables de entorno 
-5. Ejecutar comando para levantar base de datos 
+5. Ejecutar comando para levantar base de datos
    ```
-   docker compose up -d
+   docker-compose -f ./deployment/docker-compose-db.yml up -d 
    ```
 6. Ejecutar comando para iniciar aplicación en modo desarrollo 
     ```
@@ -23,5 +23,8 @@
    ```
    POST http://localhost:3000/api/v1/seed
    ```
-8. 
+8. Ejecutar el comando para correr la aplicación productiva y la base de datos contenerizada
+   ```
+   docker-compose -f ./deployment/docker-compose.yml up -d 
+   ```
    
